@@ -26,7 +26,13 @@ function buildButton(label, route) {
 }
 
 require (
-    ['views/main', 'views/cars', 'views/makers', 'views/models', 'util/resource_proxy'],
+    [
+        'views/main',
+        'views/car/carList',
+        'views/maker/makerList',
+        'views/model/modelList',
+        'util/resource_proxy'
+    ],
     function(main, cars, makers, models, resource_proxy) {
     webix.ready(function() {
         webix.ui({

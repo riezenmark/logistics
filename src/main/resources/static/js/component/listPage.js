@@ -26,14 +26,37 @@ define(function() {
                     save: url,
                     autoheight: true,
                     autowidth: true,
-                    pager: 'pager',
-                    datafetch: 3
+                    pager: tableId + 'Pager',
+                    datafetch: 10,
+                    on: {
+                        onItemClick: function(id) {
+                            const column = this.config.columns.find(function (col) {
+                                return col.id === id.column
+                            })
+                            const parentTable = this
+
+                            if (column.dialogUrl) {
+                                require([column.dialogUrl], function (dialogPage) {
+                                    webix.ui({
+                                        view: 'window',
+                                        head: 'Choose an item',
+                                        width: 200,
+                                        position: 'center',
+                                        modal: true,
+                                        body: dialogPage,
+                                        parentTable: parentTable,
+                                        cell: id
+                                    }).show()
+                                })
+                            }
+                        }
+                    }
                 },
                 {
                     view: 'pager',
-                    id: 'pager',
-                    size: 3,
-                    group: 3,
+                    id: tableId + 'Pager',
+                    size: 10,
+                    group: 10,
                     template: '{common.first()}{common.prev()}{common.pages()}{common.next()}{common.last()}'
                 }
             ]

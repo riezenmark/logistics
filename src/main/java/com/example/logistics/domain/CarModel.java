@@ -3,6 +3,7 @@ package com.example.logistics.domain;
 import com.example.logistics.util.EntityIdResolver;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 
@@ -25,4 +26,10 @@ public class CarModel implements ComboListItem {
     @ManyToOne
     @JsonIdentityReference(alwaysAsId = true)
     private CarMaker maker;
+
+    @Override
+    @JsonIgnore
+    public String getRepresentation() {
+        return String.format("%s %s", maker.getName(), name);
+    }
 }
