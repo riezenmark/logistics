@@ -38,6 +38,7 @@ require (
                     view: 'toolbar',
                     cols: [
                         buildButton('Home', ''),
+                        buildButton('Cars', 'cars'),
                         buildButton('Car Makers', 'makers')
                     ]
                 },
