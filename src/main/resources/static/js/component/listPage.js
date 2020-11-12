@@ -10,7 +10,7 @@ define(function() {
                             label: 'Add',
                             click: function() {
                                 const table = $$(tableId)
-                                const id = makerList.add({})
+                                const id = table.add({})
                                 table.editRow(id)
                             }
                         }
@@ -26,12 +26,12 @@ define(function() {
                     save: url,
                     autoheight: true,
                     autowidth: true,
-                    pager: 'makerPager',
+                    pager: 'pager',
                     datafetch: 3
                 },
                 {
                     view: 'pager',
-                    id: 'makerPager',
+                    id: 'pager',
                     size: 3,
                     group: 3,
                     template: '{common.first()}{common.prev()}{common.pages()}{common.next()}{common.last()}'

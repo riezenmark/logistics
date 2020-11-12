@@ -2,25 +2,27 @@ package com.example.logistics.domain;
 
 import com.example.logistics.util.EntityIdResolver;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Data
 @Entity
+@Data
 @JsonIdentityInfo(
         property = "id",
         generator = ObjectIdGenerators.PropertyGenerator.class,
-        scope = CarMaker.class,
+        scope = CarModel.class,
         resolver = EntityIdResolver.class
 )
-public class CarMaker implements ComboListItem {
+public class CarModel implements ComboListItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+
+    @ManyToOne
+    @JsonIdentityReference(alwaysAsId = true)
+    private CarMaker maker;
 }

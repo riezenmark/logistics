@@ -26,8 +26,8 @@ function buildButton(label, route) {
 }
 
 require (
-    ['views/main', 'views/cars', 'views/makers', 'util/resource_proxy'],
-    function(main, cars, makers, resource_proxy) {
+    ['views/main', 'views/cars', 'views/makers', 'views/models', 'util/resource_proxy'],
+    function(main, cars, makers, models, resource_proxy) {
     webix.ready(function() {
         webix.ui({
             container: 'app',
@@ -39,7 +39,8 @@ require (
                     cols: [
                         buildButton('Home', ''),
                         buildButton('Cars', 'cars'),
-                        buildButton('Car Makers', 'makers')
+                        buildButton('Car Makers', 'makers'),
+                        buildButton('Car Models', 'models')
                     ]
                 },
                 {
@@ -52,6 +53,7 @@ require (
     routie({
         '': buildRoute(main),
         'cars': buildRoute(cars),
-        'makers': buildRoute(makers)
+        'makers': buildRoute(makers),
+        'models': buildRoute(models)
     })
 })
